@@ -2,7 +2,7 @@ import React from 'react';
 
 const Discount = () => (
   <div
-    className="w-11/12 max-w-5xl sm:mx-0 sm:w-2/3 h-48 my-32 bg-no-repeat bg-center bg-cover rounded-xl overflow-hidden"
+    className="w-11/12 max-w-5xl sm:mx-0 sm:w-2/3 h-48 my-20 bg-no-repeat bg-center bg-cover rounded-xl overflow-hidden"
     style={{ backgroundImage: 'url("./assets/images/img3.png")' }}
   >
     <div className="w-2/3 sm:w-1/2 h-full px-2 py-7 lg:px-16 lg:py-7 xl:px-20 xl:py-9 bg-black/50 rounded-tr-full">

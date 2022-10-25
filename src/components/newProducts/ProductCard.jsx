@@ -21,12 +21,12 @@ const ProductCard = ({ product }) => (
             $
             {product.price}
           </span>
-          <button type="button" className="lg:mr-4">
+          <button type="button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-6 h-6 sm:w-9 sm:h-9 text-card-300"
+              className="w-6 h-6 sm:w-9 sm:h-9 text-primary-400"
             >
               <path
                 fillRule="evenodd"

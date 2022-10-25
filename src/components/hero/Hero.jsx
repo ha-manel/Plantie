@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Hero = () => (
   <section className="flex flex-col lg:flex-row justify-center">
     <div className="p-5 sm:p-20 pb-0 lg:w-1/2 lg:pt-20 lg:pl-32 lg:pr-0 lg:pb-0">
-      <h1 className="font-inter text-4xl sm:text-6xl leading-normal font-semibold text-primary-400">
+      <h1 className="font-inter text-4xl sm:text-6xl leading-normal font-semibold text-primary-500">
         Growing
         <br />
         Beautiful Plants
@@ -23,19 +23,19 @@ const Hero = () => (
       </div>
       <div className="flex mt-8 font-inter">
         <div className="mr-10 flex flex-col">
-          <span className="text-2xl sm:text-3xl text-primary-400 font-semibold">
+          <span className="text-2xl sm:text-3xl text-primary-500 font-semibold">
             2000+
           </span>
           <span className="font-medium">Delivery</span>
         </div>
         <div className="mr-10 flex flex-col">
-          <span className="text-2xl sm:text-3xl text-primary-400 font-semibold">
+          <span className="text-2xl sm:text-3xl text-primary-500 font-semibold">
             1200+
           </span>
           <span className="font-medium">Customer</span>
         </div>
         <div className="flex flex-col">
-          <span className=" text-2xl sm:text-3xl text-primary-400 font-semibold">
+          <span className=" text-2xl sm:text-3xl text-primary-500 font-semibold">
             1000+
           </span>
           <span className="font-medium">Products</span>
