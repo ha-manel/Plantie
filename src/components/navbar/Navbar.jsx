@@ -23,13 +23,6 @@ const Navbar = () => (
           </NavLink>
         </li>
         <li className="mx-4">
-          <NavLink to="/about">
-            <span className="transition ease-out duration-300 hover:text-primary-300">
-              About
-            </span>
-          </NavLink>
-        </li>
-        <li className="mx-4">
           <NavLink to="/contact">
             <span className="transition ease-out duration-300 hover:text-primary-300">
               Contact
