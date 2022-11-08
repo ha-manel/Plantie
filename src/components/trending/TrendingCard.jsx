@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TrendingCard = ({ product }) => (
-  <div className="flex-col md:flex-row flex items-center my-5 sm:my-20 md:my-14 bg-card-100 rounded-2xl mx-5 py-5">
+  <div className="flex-col md:flex-row flex items-center my-8 sm:my-14 md:my-8 bg-card-100 rounded-2xl mx-5 py-5">
     <div className="relative w-48 h-48">
       <img
         src={product.picture}
