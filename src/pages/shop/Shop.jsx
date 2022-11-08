@@ -47,13 +47,13 @@ const Shop = () => {
     <div className="w-full flex flex-col items-center bg-secondary-100">
       <Discount />
       <h2 className="header">Shop now</h2>
-      <div className="my-10 px-8 py-6 rounded-2xl bg-secondary-200">
+      <div className="flex flex-wrap justify-center my-10 px-8 py-6 rounded-2xl bg-secondary-200">
         <button
           type="button"
           className={
             filterOption === 'New Products'
-              ? 'mx-2 rounded-full px-3 py-1 bg-primary-400 text-lg font-inter text-white hover:bg-primary-200/50 hover:text-primary-500 transition ease-out duration-300'
-              : 'mx-2 rounded-full px-3 py-1 bg-primary-100/50 text-lg font-inter text-primary-500 hover:bg-primary-200/50 transition ease-out duration-300'
+              ? 'mx-2 rounded-full px-3 py-1 bg-primary-400 text-lg font-inter text-white hover:bg-primary-200/50 hover:text-primary-500 transition ease-out duration-300 my-2'
+              : 'mx-2 rounded-full px-3 py-1 bg-primary-100/50 text-lg font-inter text-primary-500 hover:bg-primary-200/50 transition ease-out duration-300 my-2'
           }
           onClick={() => changeFilter('New Products')}
         >
@@ -63,8 +63,8 @@ const Shop = () => {
           type="button"
           className={
             filterOption === 'Discount'
-              ? 'mx-2 rounded-full px-3 py-1 bg-primary-400 text-lg font-inter text-white hover:bg-primary-200/50 hover:text-primary-500 transition ease-out duration-300'
-              : 'mx-2 rounded-full px-3 py-1 bg-primary-100/50 text-lg font-inter text-primary-500 hover:bg-primary-200/50 transition ease-out duration-300'
+              ? 'mx-2 rounded-full px-3 py-1 bg-primary-400 text-lg font-inter text-white hover:bg-primary-200/50 hover:text-primary-500 transition ease-out duration-300 my-2'
+              : 'mx-2 rounded-full px-3 py-1 bg-primary-100/50 text-lg font-inter text-primary-500 hover:bg-primary-200/50 transition ease-out duration-300 my-2'
           }
           onClick={() => changeFilter('Discount')}
         >
@@ -74,8 +74,8 @@ const Shop = () => {
           type="button"
           className={
             filterOption === 'Indoor Products'
-              ? 'mx-2 rounded-full px-3 py-1 bg-primary-400 text-lg font-inter text-white hover:bg-primary-200/50 hover:text-primary-500 transition ease-out duration-300'
-              : 'mx-2 rounded-full px-3 py-1 bg-primary-100/50 text-lg font-inter text-primary-500 hover:bg-primary-200/50 transition ease-out duration-300'
+              ? 'mx-2 rounded-full px-3 py-1 bg-primary-400 text-lg font-inter text-white hover:bg-primary-200/50 hover:text-primary-500 transition ease-out duration-300 my-2'
+              : 'mx-2 rounded-full px-3 py-1 bg-primary-100/50 text-lg font-inter text-primary-500 hover:bg-primary-200/50 transition ease-out duration-300 my-2'
           }
           onClick={() => changeFilter('Indoor Products')}
         >
@@ -85,8 +85,8 @@ const Shop = () => {
           type="button"
           className={
             filterOption === 'Outdoor Products'
-              ? 'mx-2 rounded-full px-3 py-1 bg-primary-400 text-lg font-inter text-white hover:bg-primary-200/50 hover:text-primary-500 transition ease-out duration-300'
-              : 'mx-2 rounded-full px-3 py-1 bg-primary-100/50 text-lg font-inter text-primary-500 hover:bg-primary-200/50 transition ease-out duration-300'
+              ? 'mx-2 rounded-full px-3 py-1 bg-primary-400 text-lg font-inter text-white hover:bg-primary-200/50 hover:text-primary-500 transition ease-out duration-300 my-2'
+              : 'mx-2 rounded-full px-3 py-1 bg-primary-100/50 text-lg font-inter text-primary-500 hover:bg-primary-200/50 transition ease-out duration-300 my-2'
           }
           onClick={() => changeFilter('Outdoor Products')}
         >
