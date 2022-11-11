@@ -15,7 +15,9 @@ const ProductCard = ({ product }) => (
         </h3>
       </div>
       <div className="p-4">
-        <p className="font-nunito text-sm sm:text-md pb-4">{product.description}</p>
+        <p className="font-nunito text-sm sm:text-md pb-4">
+          {product.description}
+        </p>
         <div className="flex justify-between items-center pb-2">
           <span className="text-lg lg:text-2xl font-semibold font-inter text-gray-800">
             $
@@ -24,14 +26,16 @@ const ProductCard = ({ product }) => (
           <button type="button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
+              fill="none"
               viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6 sm:w-9 sm:h-9 text-primary-400"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6 sm:w-8 sm:h-8 stroke-primary-400"
             >
               <path
-                fillRule="evenodd"
-                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z"
-                clipRule="evenodd"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
           </button>
