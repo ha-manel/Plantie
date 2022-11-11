@@ -26,17 +26,17 @@ const Hero = () => (
           <span className="text-2xl sm:text-3xl text-primary-500 font-semibold">
             2000+
           </span>
-          <span className="font-medium">Delivery</span>
+          <span className="font-medium">Deliveries</span>
         </div>
         <div className="mr-10 flex flex-col">
           <span className="text-2xl sm:text-3xl text-primary-500 font-semibold">
             1200+
           </span>
-          <span className="font-medium">Customer</span>
+          <span className="font-medium">Customers</span>
         </div>
         <div className="flex flex-col">
           <span className=" text-2xl sm:text-3xl text-primary-500 font-semibold">
-            1000+
+            500+
           </span>
           <span className="font-medium">Products</span>
         </div>
