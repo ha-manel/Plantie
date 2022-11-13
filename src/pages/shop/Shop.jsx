@@ -1,46 +1,29 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Discount from '../../components/discount/Discount';
 import Products from '../../components/products/Products';
 import Trending from '../../components/trending/Trending';
 
 const Shop = () => {
-  const products = [
-    {
-      id: 1,
-      name: 'Aloe Vera',
-      picture: './assets/images/plant1.webp',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam reprehenderit.',
-      price: 50.25,
-    },
-    {
-      id: 2,
-      name: 'Aloe Vera',
-      picture: './assets/images/plant2.webp',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam reprehenderit.',
-      price: 50.25,
-    },
-    {
-      id: 3,
-      name: 'Aloe Vera',
-      picture: './assets/images/plant3.webp',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam reprehenderit.',
-      price: 50.25,
-    },
-    {
-      id: 4,
-      name: 'Aloe Vera',
-      picture: './assets/images/plant4.webp',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam reprehenderit.',
-      price: 50.25,
-    },
-  ];
   const [filterOption, setFilterOption] = useState('New Products');
+  // eslint-disable-next-line
+  const plants = useContext(PlantsContext);
+  let products = [];
+  const newPlants = plants.filter((plant) => plant.new === true);
+  const indoorPlants = plants.filter((plant) => plant.habitat === 'indoor');
+  const outdoorPlants = plants.filter((plant) => plant.habitat === 'outdoor');
+  const discountPlants = plants.filter((plant) => plant.discount > 0);
+
   const changeFilter = (option) => {
     setFilterOption(option);
+    if (filterOption === 'New Products') {
+      products = newPlants;
+    } else if (filterOption === 'Discount') {
+      products = discountPlants;
+    } else if (filterOption === 'Indoor') {
+      products = indoorPlants;
+    } else if (filterOption === 'Outdoor') {
+      products = outdoorPlants;
+    }
   };
 
   return (
