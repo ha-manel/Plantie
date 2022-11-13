@@ -1,0 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
+.header {
+  @apply font-inter text-3xl sm:text-4xl font-semibold text-primary-500 mb-2 pb-2 border-b border-b-gray-200;
+}
