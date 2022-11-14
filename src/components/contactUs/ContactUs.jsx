@@ -90,7 +90,7 @@ const ContactUs = () => (
         <input
           type="submit"
           value="Send"
-          className="mt-8 px-4 py-2 mr-2 cursor-pointer bg-primary-400 hover:bg-primary-300 transition ease-out duration-300 w-fit rounded-lg text-white text-lg font-semibold self-end"
+          className="button bg-primary-400 hover:bg-primary-300 self-end"
         />
       </form>
     </div>

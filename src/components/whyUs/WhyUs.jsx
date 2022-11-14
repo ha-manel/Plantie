@@ -73,7 +73,7 @@ const WhyUs = () => (
           </div>
         </li>
       </ul>
-      <div className="mt-8 px-3 py-2 bg-primary-400 hover:bg-primary-300 transition ease-out duration-300 w-fit rounded-lg text-white font-semibold self-center cursor-pointer">
+      <div className="button bg-primary-400 hover:bg-primary-300">
         <NavLink to="/shop">
           <span className="">Shop now</span>
         </NavLink>
