@@ -1,29 +1,27 @@
-import React, { useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Discount from '../../components/discount/Discount';
-import Products from '../../components/products/Products';
-import Trending from '../../components/trending/Trending';
+import ProductsCarousel from '../../components/productsCarousel/ProductsCarousel';
+import AllProducts from '../../components/allProducts/AllProducts';
 
-const Shop = () => {
-  const [filterOption, setFilterOption] = useState('New Products');
-  // eslint-disable-next-line
-  const plants = useContext(PlantsContext);
-  let products = [];
-  const newPlants = plants.filter((plant) => plant.new === true);
-  const indoorPlants = plants.filter((plant) => plant.habitat === 'indoor');
-  const outdoorPlants = plants.filter((plant) => plant.habitat === 'outdoor');
-  const discountPlants = plants.filter((plant) => plant.discount > 0);
+const Shop = ({ data, status }) => {
+  const [filterOption, setFilterOption] = useState('new');
+  const location = useLocation();
+  const { state } = location;
+
+  useEffect(() => {
+    if (state) {
+      setFilterOption('discount');
+    }
+  }, [state]);
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
 
   const changeFilter = (option) => {
     setFilterOption(option);
-    if (filterOption === 'New Products') {
-      products = newPlants;
-    } else if (filterOption === 'Discount') {
-      products = discountPlants;
-    } else if (filterOption === 'Indoor') {
-      products = indoorPlants;
-    } else if (filterOption === 'Outdoor') {
-      products = outdoorPlants;
-    }
   };
 
   return (
@@ -34,51 +32,97 @@ const Shop = () => {
         <button
           type="button"
           className={
-            filterOption === 'New Products'
+            filterOption === 'new'
               ? 'mx-2 rounded-full px-3 py-1 bg-primary-400 text-lg font-inter text-white hover:bg-primary-200/50 hover:text-primary-500 transition ease-out duration-300 my-2'
               : 'mx-2 rounded-full px-3 py-1 bg-primary-100/50 text-lg font-inter text-primary-500 hover:bg-primary-200/50 transition ease-out duration-300 my-2'
           }
-          onClick={() => changeFilter('New Products')}
+          onClick={() => changeFilter('new')}
         >
           New
         </button>
         <button
           type="button"
           className={
-            filterOption === 'Discount'
+            filterOption === 'discount'
               ? 'mx-2 rounded-full px-3 py-1 bg-primary-400 text-lg font-inter text-white hover:bg-primary-200/50 hover:text-primary-500 transition ease-out duration-300 my-2'
               : 'mx-2 rounded-full px-3 py-1 bg-primary-100/50 text-lg font-inter text-primary-500 hover:bg-primary-200/50 transition ease-out duration-300 my-2'
           }
-          onClick={() => changeFilter('Discount')}
+          onClick={() => changeFilter('discount')}
         >
           Discount
         </button>
         <button
           type="button"
           className={
-            filterOption === 'Indoor Products'
+            filterOption === 'indoor'
               ? 'mx-2 rounded-full px-3 py-1 bg-primary-400 text-lg font-inter text-white hover:bg-primary-200/50 hover:text-primary-500 transition ease-out duration-300 my-2'
               : 'mx-2 rounded-full px-3 py-1 bg-primary-100/50 text-lg font-inter text-primary-500 hover:bg-primary-200/50 transition ease-out duration-300 my-2'
           }
-          onClick={() => changeFilter('Indoor Products')}
+          onClick={() => changeFilter('indoor')}
         >
           Indoor
         </button>
         <button
           type="button"
           className={
-            filterOption === 'Outdoor Products'
+            filterOption === 'outdoor'
               ? 'mx-2 rounded-full px-3 py-1 bg-primary-400 text-lg font-inter text-white hover:bg-primary-200/50 hover:text-primary-500 transition ease-out duration-300 my-2'
               : 'mx-2 rounded-full px-3 py-1 bg-primary-100/50 text-lg font-inter text-primary-500 hover:bg-primary-200/50 transition ease-out duration-300 my-2'
           }
-          onClick={() => changeFilter('Outdoor Products')}
+          onClick={() => changeFilter('outdoor')}
         >
           Outdoor
         </button>
       </div>
-      <Products title={filterOption} products={products} />
-      <Trending products={products} />
+      <ProductsCarousel
+        title="Trending Products"
+        products={data[filterOption].filter((plant) => plant.trending === true)}
+      />
+      <AllProducts title={filterOption} products={data[filterOption]} />
     </div>
   );
 };
+
+Shop.propTypes = {
+  status: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    new: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        picture: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
+        discount: PropTypes.number.isRequired,
+      }),
+    ),
+    discount: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        picture: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
+        discount: PropTypes.number.isRequired,
+      }),
+    ),
+    indoor: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        picture: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
+        discount: PropTypes.number.isRequired,
+      }),
+    ),
+    outdoor: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        picture: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
+        discount: PropTypes.number.isRequired,
+      }),
+    ),
+  }).isRequired,
+};
+
 export default Shop;
