@@ -4,16 +4,21 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Carousel from 'nuka-carousel/lib/carousel';
-import ProductCard from '../productCard/ProductCard';
+import CarouselCard from './CarouselCard';
 
-const Products = ({ title, products }) => {
+const ProductsCarousel = ({ title, products }) => {
   const location = useLocation();
   const theme = useTheme();
   const mdUp = useMediaQuery(theme.breakpoints.up('md'));
 
   let SlideToShowNumber = 1;
-  if (mdUp) {
+  let height = 'h-64';
+  if (mdUp && products.length > 3) {
     SlideToShowNumber = 3;
+    height = 'h-80';
+  } else if (mdUp && products.length <= 3) {
+    SlideToShowNumber = 2;
+    height = 'h-48';
   }
 
   return (
@@ -74,7 +79,7 @@ const Products = ({ title, products }) => {
           }}
         >
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <CarouselCard key={product.id} product={product} height={height} />
           ))}
         </Carousel>
         {location.pathname === '/' && (
@@ -105,16 +110,16 @@ const Products = ({ title, products }) => {
   );
 };
 
-Products.propTypes = {
+ProductsCarousel.propTypes = {
   title: PropTypes.string.isRequired,
   products: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       picture: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
+      price: PropTypes.string.isRequired,
     }),
   ).isRequired,
 };
 
-export default Products;
+export default ProductsCarousel;
