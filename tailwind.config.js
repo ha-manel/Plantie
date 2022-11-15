@@ -14,6 +14,8 @@ module.exports = {
         secondary: {
           100: '#F8F8F8',
           200: '#ECF1ED',
+          300: '#6B6B6B',
+          400: '#3B3D41',
         },
         card: {
           100: '#E9F4EE',
