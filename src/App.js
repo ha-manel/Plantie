@@ -7,6 +7,7 @@ import Home from './pages/home/Home';
 import Shop from './pages/shop/Shop';
 import Contact from './pages/contact/Contact';
 import PlantDetails from './components/plantDetails/PlantDetails';
+import Cart from './pages/cart/Cart';
 
 const App = () => {
   const fetchPlants = async () => {
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/shop" element={<Shop data={data} status={status} />} />
           <Route path="/plant" element={<PlantDetails />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
       <Footer />
