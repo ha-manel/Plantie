@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const PlantDetails = () => {
   const location = useLocation();
   const { product } = location.state;
+  const [counter, setCounter] = useState('1');
+
+  const updateCounter = (e) => {
+    setCounter(e.target.value);
+  };
+
+  const addToCart = () => {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cartItems.some((item) => (item.product.id === product.id && item.quantity === counter))) {
+      document.querySelector('#success').classList.add('invisible');
+      document.querySelector('#error').classList.remove('invisible');
+    } else {
+      if (cartItems.some((item) => item.product.id === product.id)) {
+        const index = cartItems.findIndex((item) => item.product.id === product.id);
+        cartItems[index].quantity = counter;
+      } else {
+        cartItems.push({ product, quantity: counter });
+      }
+      document.querySelector('#error').classList.add('invisible');
+      document.querySelector('#success').classList.remove('invisible');
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+    }
+  };
+
   return (
     <section className="w-9/12 max-w-7xl py-2 mb-16 md:py-10 flex flex-col md:flex-row justify-center items-center">
-      <div className="w-full md:w-1/2 md:mb-0">
+      <div className="w-full md:w-1/2 md:mb-0 md:mr-8">
         <img src={product.picture} alt={product.name} />
       </div>
-      <div className="w-full flex flex-col justify-center md:w-1/2 mt-10">
+      <div className="w-full h-full flex flex-col justify-center md:w-1/2 mt-10">
         <h2 className="header">{product.name}</h2>
         <p className="my-4 font-inter text-lg text-gray-700">
           {product.description}
@@ -50,44 +74,66 @@ const PlantDetails = () => {
           </li>
         </ul>
         <div className="flex justify-between items-center pb-2 mt-10">
-          {product.discount > 0 ? (
-            <p>
-              <span className="text-2xl md:text-3xl font-semibold font-inter text-gray-800 line-through">
-                $
-                {product.price}
-              </span>
-              <span className="text-2xl md:text-3xl font-semibold font-inter text-gray-800 ml-4">
-                $
-                {(product.price - (product.price * product.discount) / 100).toFixed(2)}
-              </span>
-            </p>
-          ) : (
-            <span className="text-2xl md:text-3xl font-semibold font-inter text-gray-800">
+          {product.discount === product.price ? (
+            <span className="text-lg lg:text-2xl font-semibold font-inter text-gray-800">
               $
               {product.price}
             </span>
+          ) : (
+            <p>
+              <span className="text-lg lg:text-2xl font-semibold font-inter text-gray-800 line-through">
+                $
+                {product.price}
+              </span>
+              <span className="text-lg lg:text-2xl font-semibold font-inter text-gray-800 ml-4">
+                $
+                {product.discount}
+              </span>
+            </p>
           )}
-          <button
-            type="button"
-            className="flex px-3 py-2 bg-primary-400 hover:bg-primary-300 transition ease-out duration-300 w-fit rounded-lg text-white font-semibold"
-          >
-            Add to cart
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 ml-2 stroke-white"
+          <div className="flex">
+            <input
+              type="number"
+              min="1"
+              className="w-16 font-inter text-md font-medium pl-3 py-1 rounded outline-primary-400 border border-primary-500 mr-4"
+              value={counter}
+              onChange={updateCounter}
+            />
+            <button
+              type="button"
+              className="flex button bg-primary-400 hover:bg-primary-300 w-fit"
+              onClick={() => addToCart()}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-              />
-            </svg>
-          </button>
+              Add to cart
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 ml-2 stroke-white"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+        <p
+          className="invisible mt-6 px-6 py-3 bg-primary-300 text-white font-inter font-semibold text-lg rounded-xl text-center"
+          id="success"
+        >
+          Product added to cart successfully.
+        </p>
+        <p
+          className="invisible px-6 py-3 bg-red-600 text-white font-inter font-semibold text-lg rounded-xl text-center"
+          id="error"
+        >
+          This product is already added to your cart.
+        </p>
       </div>
     </section>
   );
