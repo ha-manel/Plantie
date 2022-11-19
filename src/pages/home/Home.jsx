@@ -29,7 +29,7 @@ Home.propTypes = {
         description: PropTypes.string.isRequired,
         picture: PropTypes.string.isRequired,
         price: PropTypes.string.isRequired,
-        discount: PropTypes.number.isRequired,
+        discount: PropTypes.string.isRequired,
       }),
     ),
     discount: PropTypes.arrayOf(
@@ -38,7 +38,7 @@ Home.propTypes = {
         description: PropTypes.string.isRequired,
         picture: PropTypes.string.isRequired,
         price: PropTypes.string.isRequired,
-        discount: PropTypes.number.isRequired,
+        discount: PropTypes.string.isRequired,
       }),
     ),
     indoor: PropTypes.arrayOf(
@@ -47,7 +47,7 @@ Home.propTypes = {
         description: PropTypes.string.isRequired,
         picture: PropTypes.string.isRequired,
         price: PropTypes.string.isRequired,
-        discount: PropTypes.number.isRequired,
+        discount: PropTypes.string.isRequired,
       }),
     ),
     outdoor: PropTypes.arrayOf(
@@ -56,10 +56,14 @@ Home.propTypes = {
         description: PropTypes.string.isRequired,
         picture: PropTypes.string.isRequired,
         price: PropTypes.string.isRequired,
-        discount: PropTypes.number.isRequired,
+        discount: PropTypes.string.isRequired,
       }),
     ),
-  }).isRequired,
+  }),
+};
+
+Home.defaultProps = {
+  data: {},
 };
 
 export default Home;

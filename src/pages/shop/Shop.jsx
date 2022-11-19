@@ -92,7 +92,7 @@ Shop.propTypes = {
         description: PropTypes.string.isRequired,
         picture: PropTypes.string.isRequired,
         price: PropTypes.string.isRequired,
-        discount: PropTypes.number.isRequired,
+        discount: PropTypes.string.isRequired,
       }),
     ),
     discount: PropTypes.arrayOf(
@@ -101,7 +101,7 @@ Shop.propTypes = {
         description: PropTypes.string.isRequired,
         picture: PropTypes.string.isRequired,
         price: PropTypes.string.isRequired,
-        discount: PropTypes.number.isRequired,
+        discount: PropTypes.string.isRequired,
       }),
     ),
     indoor: PropTypes.arrayOf(
@@ -110,7 +110,7 @@ Shop.propTypes = {
         description: PropTypes.string.isRequired,
         picture: PropTypes.string.isRequired,
         price: PropTypes.string.isRequired,
-        discount: PropTypes.number.isRequired,
+        discount: PropTypes.string.isRequired,
       }),
     ),
     outdoor: PropTypes.arrayOf(
@@ -119,10 +119,14 @@ Shop.propTypes = {
         description: PropTypes.string.isRequired,
         picture: PropTypes.string.isRequired,
         price: PropTypes.string.isRequired,
-        discount: PropTypes.number.isRequired,
+        discount: PropTypes.string.isRequired,
       }),
     ),
-  }).isRequired,
+  }),
+};
+
+Shop.defaultProps = {
+  data: {},
 };
 
 export default Shop;
