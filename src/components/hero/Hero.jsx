@@ -16,7 +16,7 @@ const Hero = () => (
         magnam pariatur, natus esse iusto et libero unde architecto perspiciatis
         rem quas minima facere modi! Molestiae quidem ipsa odit obcaecati!
       </p>
-      <div className="button bg-primary-300 hover:bg-primary-200">
+      <div className="button mt-8 bg-primary-300 hover:bg-primary-200">
         <NavLink to="/shop">
           <span className="">Shop now</span>
         </NavLink>

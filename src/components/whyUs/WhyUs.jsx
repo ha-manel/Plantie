@@ -73,9 +73,9 @@ const WhyUs = () => (
           </div>
         </li>
       </ul>
-      <div className="button bg-primary-400 hover:bg-primary-300">
+      <div className="button mt-8 bg-primary-400 hover:bg-primary-300">
         <NavLink to="/shop">
-          <span className="">Shop now</span>
+          <span>Shop now</span>
         </NavLink>
       </div>
     </div>
