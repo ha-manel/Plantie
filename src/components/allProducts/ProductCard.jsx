@@ -17,7 +17,12 @@ const ProductCard = ({ product }) => (
       </h3>
       <p className="font-nunito text-md my-4">{product.description}</p>
       <div className="flex justify-between items-center pb-2 mt-8">
-        {product.discount > 0 ? (
+        {product.discount === product.price ? (
+          <span className="text-lg lg:text-2xl font-semibold font-inter text-gray-800">
+            $
+            {product.price}
+          </span>
+        ) : (
           <p>
             <span className="text-lg lg:text-2xl font-semibold font-inter text-gray-800 line-through">
               $
@@ -25,14 +30,9 @@ const ProductCard = ({ product }) => (
             </span>
             <span className="text-lg lg:text-2xl font-semibold font-inter text-gray-800 ml-4">
               $
-              {(product.price - (product.price * product.discount) / 100).toFixed(2)}
+              {product.discount}
             </span>
           </p>
-        ) : (
-          <span className="text-lg lg:text-2xl font-semibold font-inter text-gray-800">
-            $
-            {product.price}
-          </span>
         )}
         <Link to="/plant" state={{ product }}>
           <button type="button">
