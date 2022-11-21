@@ -63,7 +63,7 @@ ProductCard.propTypes = {
     description: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    discount: PropTypes.number.isRequired,
+    discount: PropTypes.string.isRequired,
   }).isRequired,
 };
 
