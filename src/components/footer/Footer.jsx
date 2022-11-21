@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="flex flex-col justify-center items-center px-4 py-5 mt-6 bg-secondary-200">
+    <footer className="w-full absolute bottom-0 flex flex-col justify-center items-center px-4 py-5 mt-6 bg-secondary-200">
       <ul className="flex">
         <li>
           <svg
