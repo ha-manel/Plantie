@@ -1,8 +1,20 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
-const Navbar = () => {
+const Navbar = ({ user, handleLogout }) => {
   const location = useLocation();
+  const logout = () => {
+    axios
+      .delete('http://localhost:3000/api/v1/logout', { withCredentials: true })
+      .then((response) => {
+        console.log(response.data);
+      });
+    handleLogout();
+  };
+
   return (
     <div className="w-screen px-10 pt-2 pb-4 bg-secondary-200">
       <nav className="flex justify-between items-center">
@@ -73,23 +85,45 @@ const Navbar = () => {
               </svg>
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/profile">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6 transition ease-out duration-300 hover:text-primary-300"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                />
-              </svg>
-            </NavLink>
+          <li className="dropdown dropdown-hover dropdown-bottom dropdown-end">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              tabIndex={0}
+              className="peer cursor-pointer w-10 h-6 transition ease-out duration-300 hover:text-primary-300"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+              />
+            </svg>
+            <ul
+              className="dropdown-content menu p-3 shadow rounded-box w-52 bg-base-100"
+              tabIndex={0}
+            >
+              <li className="hover:bg-secondary-100 active:bg-secondary-200 p-2 rounded-md">
+                <NavLink to="/profile">
+                  <span className="w-full text-center font-nunito text-lg font-semibold">
+                    {user.isLoggedIn ? 'My wishlist' : 'Log in'}
+                  </span>
+                </NavLink>
+              </li>
+              {user.isLoggedIn && (
+                <li className="hover:bg-secondary-100 active:bg-secondary-200 p-2 rounded-md mt-1">
+                  <button
+                    type="button"
+                    className="w-full flex justify-center font-nunito text-lg font-semibold"
+                    onClick={() => logout()}
+                  >
+                    Log out
+                  </button>
+                </li>
+              )}
+            </ul>
           </li>
         </ul>
       </nav>
