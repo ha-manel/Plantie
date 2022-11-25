@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Discount from '../../components/discount/Discount';
 import ProductsCarousel from '../../components/productsCarousel/ProductsCarousel';
 import AllProducts from '../../components/allProducts/AllProducts';
+import PlantsContext from '../../contexts/plantsContext';
 
-const Shop = ({ data, status }) => {
+const Shop = () => {
+  const plantsData = useContext(PlantsContext);
   const [filterOption, setFilterOption] = useState('new');
   const location = useLocation();
   const { state } = location;
@@ -16,7 +17,7 @@ const Shop = ({ data, status }) => {
     }
   }, [state]);
 
-  if (status === 'loading') {
+  if (plantsData.status === 'loading') {
     return <div>Loading...</div>;
   }
 
@@ -76,57 +77,14 @@ const Shop = ({ data, status }) => {
       </div>
       <ProductsCarousel
         title="Trending Products"
-        products={data[filterOption].filter((plant) => plant.trending === true)}
+        products={plantsData.data[filterOption].filter((plant) => plant.trending === true)}
       />
-      <AllProducts title={filterOption} products={data[filterOption]} />
+      <AllProducts
+        title={filterOption}
+        products={plantsData.data[filterOption]}
+      />
     </div>
   );
-};
-
-Shop.propTypes = {
-  status: PropTypes.string.isRequired,
-  data: PropTypes.shape({
-    new: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        picture: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
-        discount: PropTypes.string.isRequired,
-      }),
-    ),
-    discount: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        picture: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
-        discount: PropTypes.string.isRequired,
-      }),
-    ),
-    indoor: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        picture: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
-        discount: PropTypes.string.isRequired,
-      }),
-    ),
-    outdoor: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        picture: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
-        discount: PropTypes.string.isRequired,
-      }),
-    ),
-  }),
-};
-
-Shop.defaultProps = {
-  data: {},
 };
 
 export default Shop;
