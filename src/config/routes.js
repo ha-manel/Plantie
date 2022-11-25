@@ -4,6 +4,7 @@ import Contact from '../pages/contact/Contact';
 import Home from '../pages/home/Home';
 import Profile from '../pages/profile/Profile';
 import Shop from '../pages/shop/Shop';
+import Signin from '../pages/signin/Signin';
 import Signup from '../pages/signup/Signup';
 
 const routes = [
@@ -14,6 +15,10 @@ const routes = [
   {
     path: '/shop',
     element: <Shop />,
+  },
+  {
+    path: '/plant',
+    element: <PlantDetails />,
   },
   {
     path: '/contact',
@@ -32,8 +37,8 @@ const routes = [
     element: <Signup />,
   },
   {
-    path: '/plant',
-    element: <PlantDetails />,
+    path: '/signin',
+    element: <Signin />,
   },
 ];
 export default routes;
