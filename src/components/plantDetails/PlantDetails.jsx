@@ -1,30 +1,40 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import UserContext from '../../contexts/userContext';
+import WishlistContext from '../../contexts/wishlistContext';
+import AddToCartBtn from '../addToCartBtn/AddToCartBtn';
 
 const PlantDetails = () => {
   const location = useLocation();
   const { product } = location.state;
+
   const [counter, setCounter] = useState('1');
+  const [wishlisted, setWishlisted] = useState(false);
+
+  const [user] = useContext(UserContext);
+  const [wishlist, setWishlist] = useContext(WishlistContext);
+
+  if (wishlist.some((item) => item.id === product.id) && !wishlisted) {
+    setWishlisted(true);
+  }
 
   const updateCounter = (e) => {
     setCounter(e.target.value);
   };
 
-  const addToCart = () => {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    if (cartItems.some((item) => (item.product.id === product.id && item.quantity === counter))) {
-      document.querySelector('#success').classList.add('invisible');
-      document.querySelector('#error').classList.remove('invisible');
-    } else {
-      if (cartItems.some((item) => item.product.id === product.id)) {
-        const index = cartItems.findIndex((item) => item.product.id === product.id);
-        cartItems[index].quantity = counter;
-      } else {
-        cartItems.push({ product, quantity: counter });
-      }
-      document.querySelector('#error').classList.add('invisible');
-      document.querySelector('#success').classList.remove('invisible');
-      localStorage.setItem('cart', JSON.stringify(cartItems));
+  const addToWishlist = () => {
+    if (!wishlisted) {
+      axios
+        .post(
+          'http://localhost:3000/api/v1/wishlist',
+          { user_id: user.user.id, plant_id: product.id },
+          { withCredentials: true },
+        )
+        .then(() => {
+          setWishlisted(true);
+          setWishlist((state) => [...state, product]);
+        });
     }
   };
 
@@ -34,7 +44,52 @@ const PlantDetails = () => {
         <img src={product.picture} alt={product.name} />
       </div>
       <div className="w-full h-full flex flex-col justify-center md:w-1/2 mt-10">
-        <h2 className="header">{product.name}</h2>
+        <h2 className="header flex justify-between items-center">
+          {product.name}
+          {user.isLoggedIn ? (
+            <button type="button" onClick={() => addToWishlist()}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                className={
+                  wishlisted
+                    ? 'w-8 h-8 cursor-pointer fill-red-600 stroke-red-600 mt-1'
+                    : 'w-8 h-8 cursor-pointer stroke-red-600 mt-1'
+                }
+                id="heart-icon"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                />
+              </svg>
+            </button>
+          ) : (
+            <Link to="/profile">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                className={
+                  wishlisted
+                    ? 'w-8 h-8 cursor-pointer fill-red-600 stroke-red-600 mt-1'
+                    : 'w-8 h-8 cursor-pointer stroke-red-600 mt-1'
+                }
+                id="heart-icon"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                />
+              </svg>
+            </Link>
+          )}
+        </h2>
         <p className="my-4 font-inter text-lg text-gray-700">
           {product.description}
         </p>
@@ -99,39 +154,13 @@ const PlantDetails = () => {
               value={counter}
               onChange={updateCounter}
             />
-            <button
-              type="button"
-              className="flex button bg-primary-400 hover:bg-primary-300 w-fit"
-              onClick={() => addToCart()}
-            >
-              Add to cart
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6 ml-2 stroke-white"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                />
-              </svg>
-            </button>
+            <AddToCartBtn product={product} counter={counter} />
           </div>
         </div>
-        <p
-          className="invisible mt-6 px-6 py-3 bg-primary-300 text-white font-inter font-semibold text-lg rounded-xl text-center"
-          id="success"
-        >
+        <p className="success invisible mt-6 px-6 py-3 bg-primary-300 text-white font-inter font-semibold text-lg rounded-xl text-center">
           Product added to cart successfully.
         </p>
-        <p
-          className="invisible px-6 py-3 bg-red-600 text-white font-inter font-semibold text-lg rounded-xl text-center"
-          id="error"
-        >
+        <p className="error invisible px-6 py-3 bg-red-600 text-white font-inter font-semibold text-lg rounded-xl text-center">
           This product is already added to your cart.
         </p>
       </div>
