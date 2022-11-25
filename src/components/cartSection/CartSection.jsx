@@ -7,16 +7,16 @@ const CartSection = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const calculateTotal = (items) => {
+    let total = 0;
     if (items.length > 1) {
-      const total = items.reduce(
+      total = items.reduce(
         (sum, currentItem) => sum + currentItem.product.discount * currentItem.quantity,
         0,
       );
-      setTotalPrice(total);
     } else if (items.length === 1) {
-      const total = items[0].product.discount * items[0].quantity;
-      setTotalPrice(total.toFixed(2));
+      total = items[0].product.discount * items[0].quantity;
     }
+    setTotalPrice(total.toFixed(2));
   };
 
   useEffect(() => {
