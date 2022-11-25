@@ -1,18 +1,22 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import UserContext from '../../contexts/userContext';
 
-const Navbar = ({ user, handleLogout }) => {
+const Navbar = () => {
+  const [user, setUser] = useContext(UserContext);
   const location = useLocation();
+
   const logout = () => {
-    axios
-      .delete('http://localhost:3000/api/v1/logout', { withCredentials: true })
-      .then((response) => {
-        console.log(response.data);
-      });
-    handleLogout();
+    axios.delete('http://localhost:3000/api/v1/logout', {
+      withCredentials: true,
+    });
+    setUser({
+      isLoggedIn: false,
+      user: {},
+    });
   };
 
   return (
@@ -105,6 +109,11 @@ const Navbar = ({ user, handleLogout }) => {
               className="dropdown-content menu p-3 shadow rounded-box w-52 bg-base-100"
               tabIndex={0}
             >
+              {/* {status === 'loading' ? (
+                <div className="w-full text-center text-md text-black">
+                  <i className="fa-solid fa-spinner fa-spin" />
+                </div>
+              ) : ( */}
               <li className="hover:bg-secondary-100 active:bg-secondary-200 p-2 rounded-md">
                 <NavLink to="/profile">
                   <span className="w-full text-center font-nunito text-lg font-semibold">
@@ -112,6 +121,7 @@ const Navbar = ({ user, handleLogout }) => {
                   </span>
                 </NavLink>
               </li>
+              {/* )} */}
               {user.isLoggedIn && (
                 <li className="hover:bg-secondary-100 active:bg-secondary-200 p-2 rounded-md mt-1">
                   <button
