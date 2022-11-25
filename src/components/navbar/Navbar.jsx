@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-/* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -109,28 +108,32 @@ const Navbar = () => {
               className="dropdown-content menu p-3 shadow rounded-box w-52 bg-base-100"
               tabIndex={0}
             >
-              {/* {status === 'loading' ? (
-                <div className="w-full text-center text-md text-black">
-                  <i className="fa-solid fa-spinner fa-spin" />
-                </div>
-              ) : ( */}
-              <li className="hover:bg-secondary-100 active:bg-secondary-200 p-2 rounded-md">
-                <NavLink to="/profile">
-                  <span className="w-full text-center font-nunito text-lg font-semibold">
-                    {user.isLoggedIn ? 'My wishlist' : 'Log in'}
-                  </span>
-                </NavLink>
-              </li>
-              {/* )} */}
-              {user.isLoggedIn && (
-                <li className="hover:bg-secondary-100 active:bg-secondary-200 p-2 rounded-md mt-1">
-                  <button
-                    type="button"
-                    className="w-full flex justify-center font-nunito text-lg font-semibold"
-                    onClick={() => logout()}
-                  >
-                    Log out
-                  </button>
+              {user.isLoggedIn ? (
+                <>
+                  <li className="hover:bg-secondary-100 active:bg-secondary-200 p-2 rounded-md">
+                    <NavLink to="/profile">
+                      <span className="w-full text-center font-nunito text-lg font-semibold">
+                        My wishlist
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li className="hover:bg-secondary-100 active:bg-secondary-200 p-2 rounded-md mt-1">
+                    <button
+                      type="button"
+                      className="w-full flex justify-center font-nunito text-lg font-semibold"
+                      onClick={() => logout()}
+                    >
+                      Log out
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <li className="hover:bg-secondary-100 active:bg-secondary-200 p-2 rounded-md">
+                  <NavLink to="/signin">
+                    <span className="w-full text-center font-nunito text-lg font-semibold">
+                      Log in
+                    </span>
+                  </NavLink>
                 </li>
               )}
             </ul>
