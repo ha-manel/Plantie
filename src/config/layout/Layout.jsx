@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import Footer from '../../components/footer/Footer';
