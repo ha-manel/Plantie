@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 const CarouselCard = ({ product, height }) => (
   <div className="flex flex-col overflow-hidden px-10">
@@ -60,16 +59,5 @@ const CarouselCard = ({ product, height }) => (
     </div>
   </div>
 );
-
-CarouselCard.propTypes = {
-  height: PropTypes.string.isRequired,
-  product: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    discount: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 export default CarouselCard;

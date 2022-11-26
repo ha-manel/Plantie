@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React, { useContext } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import axios from 'axios';

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import AddToCartBtn from '../addToCartBtn/AddToCartBtn';

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
 
 const AllProducts = ({ title, products }) => (
@@ -16,17 +15,5 @@ const AllProducts = ({ title, products }) => (
     </div>
   </section>
 );
-
-AllProducts.propTypes = {
-  title: PropTypes.string.isRequired,
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      picture: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-};
 
 export default AllProducts;

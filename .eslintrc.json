@@ -24,22 +24,9 @@
     "import/no-unresolved": "off",
     "no-shadow": "off",
     "linebreak-style": 0,
-    "jsx-a11y/label-has-associated-control": [
-      "error",
-      {
-        "required": {
-          "some": ["nesting", "id"]
-        }
-      }
-    ],
-    "jsx-a11y/label-has-for": [
-      "error",
-      {
-        "required": {
-          "some": ["nesting", "id"]
-        }
-      }
-    ]
+    "react/prop-types": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/no-noninteractive-tabindex": "off"
   },
   "ignorePatterns": ["dist/", "build/"]
 }

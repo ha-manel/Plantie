@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => (
@@ -56,15 +55,5 @@ const ProductCard = ({ product }) => (
     </div>
   </div>
 );
-
-ProductCard.propTypes = {
-  product: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    discount: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 export default ProductCard;

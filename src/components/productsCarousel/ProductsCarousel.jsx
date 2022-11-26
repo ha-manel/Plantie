@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -108,18 +107,6 @@ const ProductsCarousel = ({ title, products }) => {
       </div>
     </section>
   );
-};
-
-ProductsCarousel.propTypes = {
-  title: PropTypes.string.isRequired,
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      picture: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
 };
 
 export default ProductsCarousel;
