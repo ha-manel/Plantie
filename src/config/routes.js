@@ -4,8 +4,8 @@ import Contact from '../pages/contact/Contact';
 import Home from '../pages/home/Home';
 import Profile from '../pages/profile/Profile';
 import Shop from '../pages/shop/Shop';
-import Signin from '../pages/signin/Signin';
-import Signup from '../pages/signup/Signup';
+import Signin from '../pages/signIn/Signin';
+import Signup from '../pages/signUp/Signup';
 
 const routes = [
   {
