@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 import UserContext from '../../contexts/userContext';
 
 const Register = () => {
@@ -8,7 +9,6 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState([]);
   const [, setUser] = useContext(UserContext);
 
@@ -25,35 +25,45 @@ const Register = () => {
     setPasswordConfirmation(e.target.value);
   };
 
-  const handleSubmit = (event) => {
-    setLoading(true);
-    event.preventDefault();
+  const signupRequest = async () => {
     const user = {
       username,
       email,
       password,
       password_confirmation: passwordConfirmation,
     };
-    axios
-      .post(
-        'http://localhost:3000/api/v1/users',
-        { user },
-        { withCredentials: true },
-      )
-      .then((response) => {
-        setLoading(false);
-        if (response.data.logged_in) {
-          setUser({
-            isLoggedIn: true,
-            user: response.data.user,
-          });
-        }
-      })
-      .catch((error) => {
-        setLoading(false);
-        setError(error.response.data.errors);
-      });
+    const response = await axios.post(
+      'http://localhost:3000/api/v1/users',
+      { user },
+      { withCredentials: true },
+    );
+    return response.data;
   };
+
+  const { fetchStatus, refetch } = useQuery({
+    queryKey: ['signup'],
+    queryFn: signupRequest,
+    onSuccess: (data) => {
+      if (data.logged_in) {
+        setUser({
+          isLoggedIn: true,
+          user: data.user,
+        });
+      }
+    },
+    onError: (data) => {
+      setError(data.response.data.errors);
+    },
+    retry: false,
+    refetchOnWindowFocus: false,
+    enabled: false,
+  });
+
+  const handleSignup = (event) => {
+    event.preventDefault();
+    refetch();
+  };
+
   return (
     <div className="w-full flex justify-center md:mt-7 mb-4">
       <div className="hidden md:flex w-2/5 justify-center bg-secondary-100 rounded-r-full">
@@ -66,7 +76,7 @@ const Register = () => {
       <div className="w-full md:w-3/5 flex flex-col items-center py-10 px-16 md:px-24">
         <h1 className="header">Sign up</h1>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSignup}
           className="flex flex-col items-center w-full lg:w-3/5 mt-6"
         >
           <div className="form-control w-full max-w-xs font-inter">
@@ -124,12 +134,12 @@ const Register = () => {
           <button
             type="submit"
             className={
-              loading
+              fetchStatus === 'fetching'
                 ? 'w-2/3 max-w-xs mt-6 py-3 rounded-lg bg-secondary-200 text-secondary-400 font-semibold text-md font-inter'
                 : 'w-2/3 max-w-xs mt-6 py-3 transition ease-out duration-300 rounded-lg bg-primary-300 hover:bg-primary-200 text-white font-semibold text-md font-inter'
             }
           >
-            {loading ? (
+            {fetchStatus === 'fetching' ? (
               <i className="fa-solid fa-spinner fa-spin" />
             ) : (
               'Sign up'

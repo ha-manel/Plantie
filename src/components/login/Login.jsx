@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 import UserContext from '../../contexts/userContext';
 import WishlistContext from '../../contexts/wishlistContext';
 
@@ -9,7 +10,6 @@ const Login = () => {
   const [, setWishlist] = useContext(WishlistContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const updateUsername = (e) => {
@@ -20,33 +20,42 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (event) => {
-    setLoading(true);
-    event.preventDefault();
+  const loginRequest = async () => {
     const user = {
       username,
       password,
     };
-    axios
-      .post(
-        'http://localhost:3000/api/v1/login',
-        { user },
-        { withCredentials: true },
-      )
-      .then((response) => {
-        setLoading(false);
-        if (response.data.logged_in) {
-          setUser({
-            isLoggedIn: true,
-            user: response.data.user,
-          });
-          setWishlist(response.data.wishlist);
-        }
-      })
-      .catch((error) => {
-        setLoading(false);
-        setError(error.response.data.errors);
-      });
+    const response = await axios.post(
+      'http://localhost:3000/api/v1/login',
+      { user },
+      { withCredentials: true },
+    );
+    return response.data;
+  };
+
+  const { fetchStatus, refetch } = useQuery({
+    queryKey: ['login'],
+    queryFn: loginRequest,
+    onSuccess: (data) => {
+      if (data.logged_in) {
+        setUser({
+          isLoggedIn: true,
+          user: data.user,
+        });
+        setWishlist(data.wishlist);
+      }
+    },
+    onError: (data) => {
+      setError(data.response.data.errors);
+    },
+    retry: false,
+    refetchOnWindowFocus: false,
+    enabled: false,
+  });
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    refetch();
   };
 
   return (
@@ -54,7 +63,7 @@ const Login = () => {
       <div className="w-full md:w-3/5 flex flex-col items-center py-10 px-24">
         <h1 className="header">Log In</h1>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleLogin}
           className="flex flex-col items-center w-full lg:w-3/5 mt-6"
         >
           <div className="form-control w-full max-w-xs font-inter">
@@ -86,12 +95,16 @@ const Login = () => {
           <button
             type="submit"
             className={
-              loading
+              fetchStatus === 'fetching'
                 ? 'w-2/3 max-w-xs mt-6 py-3 rounded-lg bg-secondary-200 text-secondary-400 font-semibold text-md font-inter'
                 : 'w-2/3 max-w-xs mt-6 py-3 transition ease-out duration-300 rounded-lg bg-primary-300 hover:bg-primary-200 text-white font-semibold text-md font-inter'
             }
           >
-            {loading ? <i className="fa-solid fa-spinner fa-spin" /> : 'Log in'}
+            {fetchStatus === 'fetching' ? (
+              <i className="fa-solid fa-spinner fa-spin" />
+            ) : (
+              'Log in'
+            )}
           </button>
           <div className="font-inter text-md font-semibold mt-6">
             or
