@@ -30,6 +30,7 @@ const ProductsCarousel = ({ title, products }) => {
           slidesToScroll={1}
           swiping={false}
           wrapAround
+          autoplay
           defaultControlsConfig={{
             nextButtonText: (
               <svg
