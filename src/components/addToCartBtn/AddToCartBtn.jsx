@@ -29,7 +29,7 @@ const AddToCartBtn = ({ product, counter }) => {
     <>
       <button
         type="button"
-        className="flex button bg-primary-400 hover:bg-primary-300 w-fit"
+        className="flex button bg-primary-500 hover:bg-primary-300 w-fit"
         onClick={() => addToCart()}
       >
         <span className="hidden md:block">Add to cart</span>
