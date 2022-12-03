@@ -26,7 +26,7 @@ const Login = () => {
       password,
     };
     const response = await axios.post(
-      'http://localhost:3000/api/v1/login',
+      'https://plantie.onrender.com/api/v1/login',
       { user },
       { withCredentials: true },
     );

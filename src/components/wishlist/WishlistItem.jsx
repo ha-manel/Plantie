@@ -15,7 +15,7 @@ const WishlistItem = ({ item }) => {
 
   const deleteItem = (id) => {
     axios
-      .delete(`http://localhost:3000/api/v1/wishlist/${user.user.id}/${id}`, {
+      .delete(`https://plantie.onrender.com/api/v1/wishlist/${user.user.id}/${id}`, {
         withCredentials: true,
       })
       .then(() => {

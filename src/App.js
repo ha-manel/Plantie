@@ -15,7 +15,7 @@ const App = () => {
   });
 
   const loginStatus = async () => {
-    const response = await axios.get('http://localhost:3000/api/v1/logged_in', {
+    const response = await axios.get('https://plantie.onrender.com/api/v1/logged_in', {
       withCredentials: true,
     });
     return response.data;
@@ -38,7 +38,7 @@ const App = () => {
   });
 
   const fetchPlants = async () => {
-    const response = await axios.get('http://localhost:3000/api/v1/plants', {
+    const response = await axios.get('https://plantie.onrender.com/api/v1/plants', {
       withCredentials: true,
     });
     return response.data;

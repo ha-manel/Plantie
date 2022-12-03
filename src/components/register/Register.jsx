@@ -33,7 +33,7 @@ const Register = () => {
       password_confirmation: passwordConfirmation,
     };
     const response = await axios.post(
-      'http://localhost:3000/api/v1/users',
+      'https://plantie.onrender.com/api/v1/users',
       { user },
       { withCredentials: true },
     );

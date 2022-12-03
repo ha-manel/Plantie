@@ -27,7 +27,7 @@ const PlantDetails = () => {
     if (!wishlisted) {
       axios
         .post(
-          'http://localhost:3000/api/v1/wishlist',
+          'https://plantie.onrender.com/api/v1/wishlist',
           { user_id: user.user.id, plant_id: product.id },
           { withCredentials: true },
         )
