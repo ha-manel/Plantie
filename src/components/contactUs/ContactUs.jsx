@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ContactUs = () => (
   <section className="w-full flex justify-center mt-10">
@@ -87,11 +88,13 @@ const ContactUs = () => (
           placeholder="Your message..."
           required
         />
-        <input
-          type="submit"
-          value="Send"
-          className="button mt-8 bg-primary-400 hover:bg-primary-300 self-end"
-        />
+        <Link to="/under-construction">
+          <input
+            type="submit"
+            value="Send"
+            className="button mt-8 bg-primary-400 hover:bg-primary-300 self-end"
+          />
+        </Link>
       </form>
     </div>
     <div className="hidden md:flex w-2/5 justify-center bg-secondary-100 rounded-l-full">

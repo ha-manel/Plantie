@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CardDetails = () => {
   const currentYear = new Date().getFullYear();
@@ -95,11 +96,13 @@ const CardDetails = () => {
               />
             </label>
           </div>
-          <input
-            type="submit"
-            value="Check Out"
-            className="bg-gradient-to-r from-gray-500 to-gray-400 text-white text-xl font-semibold w-11/12 py-2 rounded-md mt-8 self-center cursor-pointer hover:scale-105 transition duration-300 ease-out"
-          />
+          <Link to="/under-construction">
+            <input
+              type="submit"
+              value="Check Out"
+              className="bg-gradient-to-r from-gray-500 to-gray-400 text-white text-xl font-semibold w-11/12 py-2 rounded-md mt-8 self-center cursor-pointer hover:scale-105 transition duration-300 ease-out"
+            />
+          </Link>
         </form>
       </div>
     </div>
