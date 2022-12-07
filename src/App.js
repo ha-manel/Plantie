@@ -18,9 +18,7 @@ const App = () => {
   });
 
   const loginStatus = async () => {
-    const response = await axios.get('https://plantie.onrender.com/api/v1/logged_in', {
-      withCredentials: true,
-    });
+    const response = await axios.get('https://plantie.onrender.com/api/v1/logged_in');
     return response.data;
   };
 
@@ -41,9 +39,7 @@ const App = () => {
   });
 
   const fetchPlants = async () => {
-    const response = await axios.get('https://plantie.onrender.com/api/v1/plants', {
-      withCredentials: true,
-    });
+    const response = await axios.get('https://plantie.onrender.com/api/v1/plants');
     return response.data;
   };
 

@@ -8,9 +8,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const logout = () => {
-    axios.delete('http://localhost:3000/api/v1/logout', {
-      withCredentials: true,
-    });
+    axios.delete('https://plantie.onrender.com/api/v1/logout');
     setUser({
       isLoggedIn: false,
       user: {},

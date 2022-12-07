@@ -15,9 +15,7 @@ const WishlistItem = ({ item }) => {
 
   const deleteItem = (id) => {
     axios
-      .delete(`https://plantie.onrender.com/api/v1/wishlist/${user.user.id}/${id}`, {
-        withCredentials: true,
-      })
+      .delete(`https://plantie.onrender.com/api/v1/wishlist/${user.user.id}/${id}`)
       .then(() => {
         const newState = wishlist.filter((product) => product.id !== id);
         setWishlist(newState);

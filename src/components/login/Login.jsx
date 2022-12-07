@@ -28,7 +28,6 @@ const Login = () => {
     const response = await axios.post(
       'https://plantie.onrender.com/api/v1/login',
       { user },
-      { withCredentials: true },
     );
     return response.data;
   };

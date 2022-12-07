@@ -29,7 +29,6 @@ const PlantDetails = () => {
         .post(
           'https://plantie.onrender.com/api/v1/wishlist',
           { user_id: user.user.id, plant_id: product.id },
-          { withCredentials: true },
         )
         .then(() => {
           setWishlisted(true);
