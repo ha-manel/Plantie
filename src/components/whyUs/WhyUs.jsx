@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const WhyUs = () => (
-  <section className="w-full flex justify-center mt-10 bg-secondary-100">
+  <section data-aos="fade" className="w-full flex justify-center mt-10 bg-secondary-100">
     <div className="hidden md:flex w-2/5 justify-center bg-white rounded-r-full">
       <img
         src="./assets/images/plant5.png"

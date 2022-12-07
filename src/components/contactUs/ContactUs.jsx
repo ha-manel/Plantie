@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ContactUs = () => (
   <section className="w-full flex justify-center mt-10">
-    <div className="w-full flex flex-col p-10 sm:py-10 sm:px-10 md:w-3/5 md:py-10 lg:pl-32 lg:pr-28">
+    <div data-aos="fade-right" className="w-full flex flex-col p-10 sm:py-10 sm:px-10 md:w-3/5 md:py-10 lg:pl-32 lg:pr-28">
       <h3 className="header">We&apos;d love to hear from you!</h3>
       <ul className="flex flex-col xl:flex-row my-6 md:px-8 text-primary-500 font-nunito">
         <li>
@@ -97,7 +97,7 @@ const ContactUs = () => (
         </Link>
       </form>
     </div>
-    <div className="hidden md:flex w-2/5 justify-center bg-secondary-100 rounded-l-full">
+    <div data-aos="fade-left" className="hidden md:flex w-2/5 justify-center bg-secondary-100 rounded-l-full">
       <img
         src="./assets/images/plant6.png"
         alt="plant"

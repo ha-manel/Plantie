@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Hero = () => (
   <section className="flex flex-col lg:flex-row justify-center">
-    <div className="p-5 sm:p-20 pb-0 lg:w-1/2 lg:pt-20 lg:pl-32 lg:pr-0 lg:pb-0">
+    <div data-aos="fade-right" className="p-5 sm:p-20 pb-0 lg:w-1/2 lg:pt-20 lg:pl-32 lg:pr-0 lg:pb-0">
       <h1 className="font-inter text-4xl sm:text-6xl leading-normal font-semibold text-primary-500">
         Growing
         <br />
@@ -42,7 +42,7 @@ const Hero = () => (
         </div>
       </div>
     </div>
-    <div className="lg:w-1/2 lg:pr-20 lg:pt-16 relative flex justify-center">
+    <div data-aos="fade-left" className="lg:w-1/2 lg:pr-20 lg:pt-16 relative flex justify-center">
       <div className="absolute bottom-0 w-2/3 h-3/5 bg-gradient-to-b from-gray-300 to-slate-50 rounded-3xl" />
       <img src="./assets/images/hero-img.png" alt="plant" className="z-10" />
     </div>

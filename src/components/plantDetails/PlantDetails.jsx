@@ -40,10 +40,10 @@ const PlantDetails = () => {
 
   return (
     <section className="w-9/12 max-w-7xl py-2 mb-16 md:py-10 flex flex-col md:flex-row justify-center items-center">
-      <div className="w-full md:w-1/2 md:mb-0 md:mr-8">
+      <div data-aos="fade-right" className="w-full md:w-1/2 md:mb-0 md:mr-8">
         <img src={product.picture} alt={product.name} />
       </div>
-      <div className="w-full h-full flex flex-col justify-center md:w-1/2 mt-10">
+      <div data-aos="fade-left" className="w-full h-full flex flex-col justify-center md:w-1/2 mt-10">
         <h2 className="header flex justify-between items-center">
           {product.name}
           {user.isLoggedIn ? (

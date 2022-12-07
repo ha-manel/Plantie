@@ -2,12 +2,15 @@ import './App.css';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import UserContext from './contexts/userContext';
 import PlantsContext from './contexts/plantsContext';
 import WishlistContext from './contexts/wishlistContext';
 import Layout from './config/layout/Layout';
 
 const App = () => {
+  AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
   const [wishlist, setWishlist] = useState([]);
   const [user, setUser] = useState({
     isLoggedIn: false,

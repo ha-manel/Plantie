@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => (
-  <div className="flex-col md:flex-row flex items-center my-10 sm:my-16 md:my-10 bg-card-100 rounded-2xl mx-5 py-5">
+  <div data-aos="fade-right" className="flex-col md:flex-row flex items-center my-10 sm:my-16 md:my-10 bg-card-100 rounded-2xl mx-5 py-5">
     <div className="relative w-48 h-48">
       <img
         src={product.picture}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Discount = () => (
   <div
+    data-aos="fade-up"
     className="w-11/12 max-w-5xl sm:mx-0 sm:w-2/3 h-48 my-20 bg-no-repeat bg-center bg-cover rounded-xl overflow-hidden"
     style={{ backgroundImage: 'url("./assets/images/img3.png")' }}
   >

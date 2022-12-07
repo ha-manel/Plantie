@@ -25,6 +25,7 @@ const WishlistItem = ({ item }) => {
   };
   return (
     <li
+      data-aos="fade-right"
       key={item.id}
       className="w-full flex justify-between items-center bg-secondary-100 rounded-2xl mb-3"
     >

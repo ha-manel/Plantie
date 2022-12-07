@@ -27,7 +27,7 @@ const CartSection = () => {
 
   if (items.length < 1) {
     return (
-      <div className="flex items-center mt-24 text-2xl font-inter font-bold text-gray-600">
+      <div data-aos="fade" className="flex items-center mt-24 text-2xl font-inter font-bold text-gray-600">
         You don&apos;t have any items yet
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@ const CartSection = () => {
   return (
     <section className="w-full max-w-7xl py-2 mb-16 mt-10 md:mt-0 md:py-10 p-8">
       <h2 className="header">Shopping Cart</h2>
-      <div className="w-full flex flex-col lg:flex-row items-center">
+      <div data-aos="fade-right" className="w-full flex flex-col lg:flex-row items-center">
         <div className="w-full md:w-2/3 flex flex-col mt-8">
           <ul className="w-full">
             {items.map((item) => (

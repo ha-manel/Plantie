@@ -60,7 +60,7 @@ const Login = () => {
 
   return (
     <div className="w-full flex justify-center md:mt-7">
-      <div className="w-full md:w-3/5 flex flex-col items-center py-10 px-24">
+      <div data-aos="fade-right" className="w-full md:w-3/5 flex flex-col items-center py-10 px-24">
         <h1 className="header">Log In</h1>
         <form
           onSubmit={handleLogin}
@@ -118,7 +118,7 @@ const Login = () => {
         </form>
         <p className="mt-6 text-red-600 font-inter font-semibold">{error}</p>
       </div>
-      <div className="hidden md:flex w-2/5 justify-center bg-secondary-100 rounded-l-full">
+      <div data-aos="fade-left" className="hidden md:flex w-2/5 justify-center bg-secondary-100 rounded-l-full">
         <img
           src="./assets/images/login-img.png"
           alt="login"

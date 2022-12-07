@@ -66,14 +66,14 @@ const Register = () => {
 
   return (
     <div className="w-full flex justify-center md:mt-7 mb-4">
-      <div className="hidden md:flex w-2/5 justify-center bg-secondary-100 rounded-r-full">
+      <div data-aos="fade-right" className="hidden md:flex w-2/5 justify-center bg-secondary-100 rounded-r-full">
         <img
           src="./assets/images/signup-img.png"
           alt="signup"
           className="w-3/5 object-contain"
         />
       </div>
-      <div className="w-full md:w-3/5 flex flex-col items-center py-10 px-16 md:px-24">
+      <div data-aos="fade-left" className="w-full md:w-3/5 flex flex-col items-center py-10 px-16 md:px-24">
         <h1 className="header">Sign up</h1>
         <form
           onSubmit={handleSignup}

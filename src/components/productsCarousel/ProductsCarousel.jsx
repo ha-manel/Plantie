@@ -23,7 +23,7 @@ const ProductsCarousel = ({ title, products }) => {
   return (
     <section className="w-full flex flex-col items-center bg-secondary-100 py-10">
       <h2 className="w-2/3 header">{title}</h2>
-      <div className="w-full flex flex-col max-w-sm md:max-w-none sm:w-2/3">
+      <div data-aos="fade" data-aos-offset="300" className="w-full flex flex-col max-w-sm md:max-w-none sm:w-2/3">
         <Carousel
           className="pb-16"
           slidesToShow={SlideToShowNumber}

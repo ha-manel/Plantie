@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const CardDetails = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <div className="w-full max-w-md lg:w-1/3 h-fit mt-4 md:ml-6 py-10">
+    <div data-aos="fade-left" className="w-full max-w-md lg:w-1/3 h-fit mt-4 md:ml-6 py-10">
       <div className="py-10 px-8 bg-gradient-to-t from-secondary-400 to-secondary-300 text-gray-300 rounded-2xl font-nunito">
         <h4 className="font-inter text-3xl text-white font-semibold">
           Card Details
