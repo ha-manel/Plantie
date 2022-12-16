@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const ContactUs = () => (
   <section className="w-full flex justify-center mt-10">
@@ -64,37 +63,44 @@ const ContactUs = () => (
           </div>
         </li>
       </ul>
-      <form action="" className="max-w-lg flex flex-col md:p-8 pt-4">
+      <form action="https://submit-form.com/kxAaJdDe" method="POST" className="max-w-lg flex flex-col md:p-8 pt-4">
+        <input
+          type="hidden"
+          name="_redirect"
+          value="https://plantie-nine.vercel.app/thanks"
+        />
         <input
           type="text"
+          name="name"
           className="max-w-lg py-4 px-8 rounded-xl bg-secondary-100 font-inter border border-secondary-200 outline-primary-400"
           placeholder="Full Name"
           required
         />
         <input
           type="email"
+          name="email"
           className="max-w-lg py-4 mt-4 mb-0 px-8 rounded-xl bg-secondary-100 font-inter border border-secondary-200 outline-primary-400"
           placeholder="E-mail"
           required
         />
         <input
           type="text"
+          name="subject"
           className="max-w-lg my-4 py-4 px-8 rounded-xl bg-secondary-100 font-inter border border-secondary-200 outline-primary-400"
           placeholder="Subject"
           required
         />
         <textarea
+          name="message"
           className="max-w-lg resize-none py-4 px-8 rounded-xl bg-secondary-100 font-inter border border-secondary-200 outline-primary-400"
           placeholder="Your message..."
           required
         />
-        <Link to="/under-construction">
-          <input
-            type="submit"
-            value="Send"
-            className="button mt-8 bg-primary-400 hover:bg-primary-300 self-end"
-          />
-        </Link>
+        <input
+          type="submit"
+          value="Send"
+          className="button mt-8 bg-primary-400 hover:bg-primary-300 self-end"
+        />
       </form>
     </div>
     <div data-aos="fade-left" className="hidden md:flex w-2/5 justify-center bg-secondary-100 rounded-l-full">
