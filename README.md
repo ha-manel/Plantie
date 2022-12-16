@@ -64,6 +64,9 @@
 
 - [Live Demo Link](https://plantie-nine.vercel.app/)
 
+### Link to backend:
+[Backend repository](https://github.com/ha-manel/Plantie-Backend)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
