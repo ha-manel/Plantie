@@ -6,6 +6,7 @@ import Profile from '../pages/profile/Profile';
 import Shop from '../pages/shop/Shop';
 import Signin from '../pages/signin/Signin';
 import Signup from '../pages/signup/Signup';
+import Thanks from '../pages/thanks/Thanks';
 import UnderConstruction from '../pages/underConstruction/UnderConstruction';
 
 const routes = [
@@ -44,6 +45,10 @@ const routes = [
   {
     path: '/under-construction',
     element: <UnderConstruction />,
+  },
+  {
+    path: '/thanks',
+    element: <Thanks />,
   },
 ];
 export default routes;
